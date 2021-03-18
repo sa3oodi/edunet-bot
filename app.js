@@ -14,8 +14,8 @@ const options = {
 };
 
 const url = 'https://edunetbh.herokuapp.com:443';
-const bot = new TelegramBot(TOKEN, options);
-bot.setWebHook(`${url}/bot${TOKEN}`);
+const bot = new TelegramBot(TOKEN, { polling: true });
+// bot.setWebHook(`${url}/bot${TOKEN}`);
 
 async function regex_hidden_token(response) {
     const is = /value="(.*?)" \/>/gm
