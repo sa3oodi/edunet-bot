@@ -9,12 +9,12 @@ const TOKEN = '1743354043:AAEMQezBuvTgvgcgo3CeJR-i_6jsdQedP54';
 const TelegramBot = require('node-telegram-bot-api');
 const options = {
     webHook: {
-        port: 443
+        port: process.env.PORT
     }
 };
 
 const url = 'https://edunetbh.herokuapp.com:443';
-const bot = new TelegramBot(TOKEN, { polling: true });
+const bot = new TelegramBot(TOKEN, options);
 // bot.setWebHook(`${url}/bot${TOKEN}`);
 
 async function regex_hidden_token(response) {
