@@ -1,0 +1,20 @@
+{
+    "name": "edunet_bot",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node ./app.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "crypto": "^1.0.1",
+        "node-fetch": "^2.6.1",
+        "node-telegram-bot-api": "^0.51.0",
+        "qs": "^6.9.6",
+        "set-cookie-parser": "^2.4.8"
+    }
+}
