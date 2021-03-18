@@ -1,11 +1,1 @@
-{
-    "database": [{
-            "username": "030200482",
-            "password": "030200482S"
-        },
-        {
-            "username": "030200482",
-            "password": "030200482S"
-        }
-    ]
-}
+{"records":[{"timestamp":1616101577877,"data":{"a":1,"c":3}},{"timestamp":1616101824290,"data":{"a":1,"c":3}}]}

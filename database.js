@@ -1,22 +1,16 @@
-var database = require('./database.json')
-const fs = require('fs');
+const JsonRecords = require('json-records');
+const jr = new JsonRecords('database.json');
 
-var output = {
-    username: "oses",
-    password: "oses123"
+async function add_to_database(username, password, chat_id) {
+    return jr.add({ username: username, password: password, chat_id: chat_id });
 }
 
-var mynotes = { "Id": "oses", "Title": "oses", "Description": "hi" };
 
-fs.readFile('./database.json', 'utf8', function(err, data) {
-    // console.log(data)
-    var obj = JSON.parse(data);
-    obj.push(mynotes);
-    var strNotes = JSON.stringify(obj);
-    fs.writeFile('./database.json', strNotes, function(err) {
-        if (err) return console.log(err);
-        console.log('Note added');
-        // });
+async function all_records() {
+    return jr.get();
+}
 
-    })
-})
+module.exports = {
+    add_to_database: add_to_database,
+    all_records: all_records
+}

@@ -2,6 +2,7 @@ const fetch = require('node-fetch');
 const request = require('request');
 var setCookie = require('set-cookie-parser');
 var encrypt = require('./encrypt-decrypt');
+var database = require('./database')
 const TOKEN = '1743354043:AAEMQezBuvTgvgcgo3CeJR-i_6jsdQedP54';
 const TelegramBot = require('node-telegram-bot-api');
 const options = {
@@ -53,8 +54,8 @@ async function edunet_quiz(ID, Course_Id) {
     }).catch(console.log)
 }
 
-async function quiz(headers) {
-    return fetch(`https://www.edunet.bh/Quiz/TakeQuiz?q=2QHueY5vMvFzh4CsXk4qq4GMNrhYTqcFksSI/Mk2jtk=`, {
+async function quiz(headers, link) {
+    return fetch(`${link}`, {
         headers: {
             'Cookie': headers,
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
@@ -84,13 +85,14 @@ async function set_session(headers) {
     })
 }
 
-async function login() {
+async function login(username, password) {
     return new Promise(function(resolve, reject) {
         request.post({
             url: 'https://www.edunet.bh/',
             form: {
                 __RequestVerificationToken: '0-rAn9F4_w_222Rg03OHhxE9JgGRDZTGDcT1dP0YQd1Wy_XE6YGPld6YvTjkqoCjMnSaloYJ2y_KJxynJoL69qiCIxjk9HLRvr6BMLlIsDw1',
-
+                Username: username,
+                Password: password
             },
             headers: {
                 'User-Agent': 'Mozilla/5.0',
@@ -122,44 +124,63 @@ bot.on('message', function onMessage(msg) {
         bot.sendMessage(msg.chat.id, `Welcome Back ${msg.from} 😝,\n\nThis Bot Allows You To Get\nEdunet.bh Quiz Answers For Free 😎.\n\nFor More Helps Send (/help)`)
     } else if (msg.text.toLocaleLowerCase() === '/help') {
         bot.sendMessage(msg.chat.id, 'Edunet Quiz Commands.\n\nFor login To Edunet.bh;\nSend (/login username:password)\n\nMake sure Enter the Command Correctly!\n\n\nFor Get The Quiz Answers\nPlease Send The Quiz Link To The Bot,\nif You Are Already Logged In Before!')
-    } else if (msg.text.includes('/login')) {
-        var username = msg.text.split(':')[0]
-        var password = msg.text.split(':')[1]
-        encrypt.encrypt(username).then(username_encrypt => {
-            encrypt.encrypt(password).then(password_encrypt => {
-                bot.sendMessage(msg.chat.id, `${username}\n${password}`)
-                bot.sendMessage(msg.chat.id, `${username_encrypt}\n${password_encrypt}`)
-            })
-        })
-
     }
-    //     login().then(rs => {
-    //         if (rs['response'].includes('/Account/UserType')) {
-    //             var headers = `AWSALB=${rs['headers']['AWSALB'].value}; AWSALBCORS=${rs['headers']['AWSALBCORS'].value}; .AspNet.ApplicationCookie=${rs['headers']['.AspNet.ApplicationCookie'].value}; __RequestVerificationToken=esQwShPDE3KGqgrHG0RIObbTGGTwBoL49P6vfhbZ-oGF8Xg5gnS62L3O2oW5KiUXSyOKewvBlqK1kAPVibReTGMKCTfoFp_XW08OP9vwD4w1; ASP.NET_SessionId=btbp1ifxs0imrr3u4gcf32yh; zoom=1.7999999999999998`
-    //             console.log(headers)
-    //             set_session(headers).then(sp => {
-    //                 quiz(headers).then(qu => {
-    //                     get_id_of_quize(qu).then(quize_id => {
-    //                         get_id_of_cource(qu).then(cource_id => {
-    //                             edunet_quiz(quize_id, cource_id).then(respon => {
-    //                                 respon.forEach(element => {
-    //                                     var choice = element['ChoicesList'];
-    //                                     choice.forEach(ans => {
-    //                                         var is_correct = ans['Correct_Choice'];
-    //                                         if (is_correct === true) {
-    //                                             bot.sendMessage(msg.chat.id, `Question : ${removeTags(element['Question_Text']) }\n\nAnswer : ${ans['ChoiceText']}\n\nQuiz Cheat By Anonymous (:`);
-    //                                         }
-    //                                     });
-    //                                 });
-    //                             })
-    //                         })
-    //                     })
-    //                 })
-    //             })
-    //         } else {
-    //             bot.sendMessage(msg.chat.id, "Username Or Password Dosen't Match!")
-    //         }
-    //     })
-    // }
+    // else if (msg.text.includes('/login')) {
+    //         var username = msg.text.split(':')[0]
+    //         var username2 = username.split('/login ')[1]
+    //         var password = msg.text.split(':')[1]
+    //         encrypt.encrypt(username2).then(username_encrypt => {
+    //             encrypt.encrypt(password).then(password_encrypt => {
+    //                 bot.sendMessage(msg.chat.id, `${username2}\n${password}`)
+    //                 bot.sendMessage(msg.chat.id, `${username_encrypt}\n${password_encrypt}`)
 
+
+    //                 database.all_records().then(records => {
+    //                     records['records'].forEach(student => {
+    //                         var username = data['username']
+    //                     });
+    //                 })
+
+
+
+
+
+    //             })
+    //         })
+
+    //     }
+    // })
+    var mssg = msg.text
+    var username = mssg.split(':')[0]
+    var password1 = mssg.split(':')[1]
+    var password = password1.split(' ')[0]
+    var link = mssg.split(' ')[1]
+
+    login(username, password).then(rs => {
+        if (rs['response'].includes('/Account/UserType')) {
+            // database.add_to_database(username_encrypt, password_encrypt)
+            var headers = `AWSALB=${rs['headers']['AWSALB'].value}; AWSALBCORS=${rs['headers']['AWSALBCORS'].value}; .AspNet.ApplicationCookie=${rs['headers']['.AspNet.ApplicationCookie'].value}; __RequestVerificationToken=esQwShPDE3KGqgrHG0RIObbTGGTwBoL49P6vfhbZ-oGF8Xg5gnS62L3O2oW5KiUXSyOKewvBlqK1kAPVibReTGMKCTfoFp_XW08OP9vwD4w1; ASP.NET_SessionId=btbp1ifxs0imrr3u4gcf32yh; zoom=1.7999999999999998`
+            set_session(headers).then(sp => {
+                quiz(headers, link).then(qu => {
+                    get_id_of_quize(qu).then(quize_id => {
+                        get_id_of_cource(qu).then(cource_id => {
+                            edunet_quiz(quize_id, cource_id).then(respon => {
+                                respon.forEach(element => {
+                                    var choice = element['ChoicesList'];
+                                    choice.forEach(ans => {
+                                        var is_correct = ans['Correct_Choice'];
+                                        if (is_correct === true) {
+                                            bot.sendMessage(msg.chat.id, `Question : ${removeTags(element['Question_Text'])}\n\nAnswer : ${ans['ChoiceText']}\n\nQuiz Cheat By Anonymous (:`);
+                                        }
+                                    });
+                                });
+                            })
+                        })
+                    })
+                })
+            })
+        } else {
+            bot.sendMessage(msg.chat.id, "Username Or Password Dosen't Match!")
+        }
+    })
 })

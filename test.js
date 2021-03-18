@@ -1,23 +1,17 @@
-// var encrypt = require('./encrypt-decrypt');
+// const JsonRecords = require('json-records');
+// const jr = new JsonRecords('database.json');
 
-// encrypt.encrypt('Hello World!').then(res => {
-//     if (res === '2c8bd89c2e314f7f2245e04c') {
-//         console.log(res)
-//         encrypt.decrypt(res).then(res2 => {
-//             console.log(res2)
-//         })
-//     }
+// // Add 2 records.
+// jr.add({ a: 1, c: 3 });
 
 
-// })
+var text = "oses:123 link"
 
 
-var database = require('./database')
+var username = text.split(':')[0]
+var password1 = text.split(':')[1]
+var password = password1.split(' ')[0]
+var link = text.split(' ')[1]
 
 
-// database.check("030200482").then(result => {
-//     if (result == false) {
-database.add(database.user("030200482", "03020048235119254Saeed")).then(console.log(`New User Added`))
-    // }
-
-// })
+console.log(`${username}\n${password}\n${link}`)
