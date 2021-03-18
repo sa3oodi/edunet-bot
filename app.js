@@ -13,7 +13,7 @@ const options = {
     }
 };
 
-const url = 'https://edunetbh.herokuapp.com:443';
+const url = 'https://powerful-refuge-93617.herokuapp.com:443';
 const bot = new TelegramBot(TOKEN, options);
 bot.setWebHook(`${url}/bot${TOKEN}`);
 
