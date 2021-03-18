@@ -359,35 +359,35 @@ bot.on('message', function onMessage(msg) {
     if (msg.text === '/start') {
         bot.sendMessage(msg.chat.id, "I'm listening for you...")
     } else {
-        // login().then(rs => {
-        //     if (rs['response'].includes('/Account/UserType')) {
+        login().then(rs => {
+            if (rs['response'].includes('/Account/UserType')) {
 
-        //         var headers = `AWSALB=${rs['headers']['AWSALB'].value}; AWSALBCORS=${rs['headers']['AWSALBCORS'].value}; .AspNet.ApplicationCookie=${rs['headers']['.AspNet.ApplicationCookie'].value}; __RequestVerificationToken=esQwShPDE3KGqgrHG0RIObbTGGTwBoL49P6vfhbZ-oGF8Xg5gnS62L3O2oW5KiUXSyOKewvBlqK1kAPVibReTGMKCTfoFp_XW08OP9vwD4w1; ASP.NET_SessionId=btbp1ifxs0imrr3u4gcf32yh; zoom=1.7999999999999998`
-        //         console.log(headers)
-        //         set_session(headers).then(sp => {
-        //             quiz(headers).then(qu => {
-        //                 // console.log(qu)
-        //                 get_id_of_quize(qu).then(quize_id => {
-        //                     get_id_of_cource(qu).then(cource_id => {
-        //                         edunet_quiz(quize_id, cource_id).then(respon => {
-        //                             respon.forEach(element => {
-        //                                 var choice = element['ChoicesList'];
-        //                                 choice.forEach(ans => {
-        //                                     var is_correct = ans['Correct_Choice'];
-        //                                     if (is_correct === true) {
-        //                                         bot.sendMessage(msg.chat.id, `Question : ${removeTags(element['Question_Text']) }\nAnswer : ${ans['ChoiceText']}\n\nQuiz cheat by S.SAEED (:`);
-        //                                     }
-        //                                 });
-        //                             });
-        //                         })
-        //                     })
-        //                 })
-        //             })
-        //         })
-        //     } else {
-        //         console.log("Username Or Password Dosen't Match!")
-        //     }
-        // })
+                var headers = `AWSALB=${rs['headers']['AWSALB'].value}; AWSALBCORS=${rs['headers']['AWSALBCORS'].value}; .AspNet.ApplicationCookie=${rs['headers']['.AspNet.ApplicationCookie'].value}; __RequestVerificationToken=esQwShPDE3KGqgrHG0RIObbTGGTwBoL49P6vfhbZ-oGF8Xg5gnS62L3O2oW5KiUXSyOKewvBlqK1kAPVibReTGMKCTfoFp_XW08OP9vwD4w1; ASP.NET_SessionId=btbp1ifxs0imrr3u4gcf32yh; zoom=1.7999999999999998`
+                console.log(headers)
+                set_session(headers).then(sp => {
+                    quiz(headers).then(qu => {
+                        // console.log(qu)
+                        get_id_of_quize(qu).then(quize_id => {
+                            get_id_of_cource(qu).then(cource_id => {
+                                edunet_quiz(quize_id, cource_id).then(respon => {
+                                    respon.forEach(element => {
+                                        var choice = element['ChoicesList'];
+                                        choice.forEach(ans => {
+                                            var is_correct = ans['Correct_Choice'];
+                                            if (is_correct === true) {
+                                                bot.sendMessage(msg.chat.id, `Question : ${removeTags(element['Question_Text']) }\nAnswer : ${ans['ChoiceText']}\n\nQuiz cheat by S.SAEED (:`);
+                                            }
+                                        });
+                                    });
+                                })
+                            })
+                        })
+                    })
+                })
+            } else {
+                console.log("Username Or Password Dosen't Match!")
+            }
+        })
     }
 
 })
