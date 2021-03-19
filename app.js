@@ -5,7 +5,6 @@ var encrypt = require('./encrypt-decrypt');
 var database = require('./database')
 const TOKEN = '1743354043:AAEMQezBuvTgvgcgo3CeJR-i_6jsdQedP54';
 const TelegramBot = require('node-telegram-bot-api');
-const { check_user, get_info } = require('./database');
 const options = {
     webHook: {
         port: process.env.PORT
@@ -14,7 +13,7 @@ const options = {
 
 const url = 'https://powerful-refuge-93617.herokuapp.com:443';
 const bot = new TelegramBot(TOKEN, options);
-bot.setWebHook(`${url}/bot${TOKEN}`);
+// bot.setWebHook(`${url}/bot${TOKEN}`);
 
 async function regex_hidden_token(response) {
     const is = /value="(.*?)" \/>/gm
