@@ -136,7 +136,7 @@ bot.on('message', function onMessage(msg) {
                         edunet_login(username, password).then(response => {
                             if (response['response'].includes('/Account/UserType')) {
                                 console.log(response['response'])
-                                var headers = `AWSALB=${rs['headers']['AWSALB'].value}; AWSALBCORS=${rs['headers']['AWSALBCORS'].value}; .AspNet.ApplicationCookie=${rs['headers']['.AspNet.ApplicationCookie'].value}; __RequestVerificationToken=esQwShPDE3KGqgrHG0RIObbTGGTwBoL49P6vfhbZ-oGF8Xg5gnS62L3O2oW5KiUXSyOKewvBlqK1kAPVibReTGMKCTfoFp_XW08OP9vwD4w1; ASP.NET_SessionId=btbp1ifxs0imrr3u4gcf32yh; zoom=1.7999999999999998`
+                                var headers = `AWSALB=${response['headers']['AWSALB'].value}; AWSALBCORS=${rs['headers']['AWSALBCORS'].value}; .AspNet.ApplicationCookie=${rs['headers']['.AspNet.ApplicationCookie'].value}; __RequestVerificationToken=esQwShPDE3KGqgrHG0RIObbTGGTwBoL49P6vfhbZ-oGF8Xg5gnS62L3O2oW5KiUXSyOKewvBlqK1kAPVibReTGMKCTfoFp_XW08OP9vwD4w1; ASP.NET_SessionId=btbp1ifxs0imrr3u4gcf32yh; zoom=1.7999999999999998`
                                 set_session(headers).then(set_session_response => {
                                     encrypt.encrypt(username).then(username_encrypt => {
                                         encrypt.encrypt(password).then(password_encrypt => {
@@ -170,7 +170,7 @@ bot.on('message', function onMessage(msg) {
                                     encrypt.decrypt(get_info_response.password).then(password_decrypt => {
                                         edunet_login(username_decrypt, password_decrypt).then(response => {
                                             if (response['response'].includes('/Account/UserType')) {
-                                                var headers_login = `AWSALB=${rs['headers']['AWSALB'].value}; AWSALBCORS=${rs['headers']['AWSALBCORS'].value}; .AspNet.ApplicationCookie=${rs['headers']['.AspNet.ApplicationCookie'].value}; __RequestVerificationToken=esQwShPDE3KGqgrHG0RIObbTGGTwBoL49P6vfhbZ-oGF8Xg5gnS62L3O2oW5KiUXSyOKewvBlqK1kAPVibReTGMKCTfoFp_XW08OP9vwD4w1; ASP.NET_SessionId=btbp1ifxs0imrr3u4gcf32yh; zoom=1.7999999999999998`
+                                                var headers_login = `AWSALB=${response['headers']['AWSALB'].value}; AWSALBCORS=${rs['headers']['AWSALBCORS'].value}; .AspNet.ApplicationCookie=${rs['headers']['.AspNet.ApplicationCookie'].value}; __RequestVerificationToken=esQwShPDE3KGqgrHG0RIObbTGGTwBoL49P6vfhbZ-oGF8Xg5gnS62L3O2oW5KiUXSyOKewvBlqK1kAPVibReTGMKCTfoFp_XW08OP9vwD4w1; ASP.NET_SessionId=btbp1ifxs0imrr3u4gcf32yh; zoom=1.7999999999999998`
                                                 set_session(headers_login).then(set_session_response => {
                                                     quiz(headers, link).then(qu => {
                                                         get_id_of_quize(qu).then(quize_id => {
