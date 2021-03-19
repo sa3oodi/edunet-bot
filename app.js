@@ -135,12 +135,13 @@ bot.on('message', function onMessage(msg) {
                     } else if (check_user_response.message === "Available") {
                         edunet_login(username, password).then(response => {
                             if (response['response'].includes('/Account/UserType')) {
+                                console.log(response['response'])
                                 var headers = `AWSALB=${rs['headers']['AWSALB'].value}; AWSALBCORS=${rs['headers']['AWSALBCORS'].value}; .AspNet.ApplicationCookie=${rs['headers']['.AspNet.ApplicationCookie'].value}; __RequestVerificationToken=esQwShPDE3KGqgrHG0RIObbTGGTwBoL49P6vfhbZ-oGF8Xg5gnS62L3O2oW5KiUXSyOKewvBlqK1kAPVibReTGMKCTfoFp_XW08OP9vwD4w1; ASP.NET_SessionId=btbp1ifxs0imrr3u4gcf32yh; zoom=1.7999999999999998`
                                 set_session(headers).then(set_session_response => {
                                     encrypt.encrypt(username).then(username_encrypt => {
                                         encrypt.encrypt(password).then(password_encrypt => {
                                             database.add_user(username_encrypt, password_encrypt, msg.chat.id).then(add_user_reponse => {
-                                                if (add_user_reponse.seccess === true) {
+                                                if (add_user_reponse.success === true) {
                                                     bot.sendMessage(msg.chat.id, "Logged in Successfully...")
                                                 } else {
                                                     bot.sendMessage(msg.chat.id, add_user_reponse.message)
