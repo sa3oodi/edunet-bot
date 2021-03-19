@@ -14,7 +14,7 @@ Hello Ministry 😂....
 ...
 ```
 
-## Featurs
+## Features
 
 ```
 1- Free To Use .
