@@ -160,13 +160,6 @@ bot.on('message', function onMessage(msg) {
                     }
                 }
             })
-
-
-
-
-
-
-
         } else {
             if (validUrl.isUri(msg.text)) {
                 if (msg.text.includes('https://edunet.bh/Quiz/TakeQuiz?q=')) {
@@ -221,39 +214,4 @@ bot.on('message', function onMessage(msg) {
 
         }
     })
-    // var mssg = msg.text
-    // var username = mssg.split(':')[0]
-    // var password1 = mssg.split(':')[1]
-    // var password = password1.split(' ')[0]
-    // var link = mssg.split(' ')[1]
-
-// login(username, password).then(rs => {
-//         if (response['response'].includes('/Account/UserType')) {
-//             // database.add_to_database(username_encrypt, password_encrypt)
-//             var headers = `AWSALB=${response['headers']['AWSALB'].value}; AWSALBCORS=${response['headers']['AWSALBCORS'].value}; .AspNet.ApplicationCookie=${response['headers']['.AspNet.ApplicationCookie'].value}; __RequestVerificationToken=esQwShPDE3KGqgrHG0RIObbTGGTwBoL49P6vfhbZ-oGF8Xg5gnS62L3O2oW5KiUXSyOKewvBlqK1kAPVibReTGMKCTfoFp_XW08OP9vwD4w1; ASP.NET_SessionId=btbp1ifxs0imrr3u4gcf32yh; zoom=1.7999999999999998`
-//             set_session(headers).then(sp => {
-//                 quiz(headers, link).then(qu => {
-//                     get_id_of_quize(qu).then(quize_id => {
-//                         get_id_of_cource(qu).then(cource_id => {
-//                             edunet_quiz(quize_id, cource_id).then(respon => {
-//                                 respon.forEach(element => {
-//                                     var choice = element['ChoicesList'];
-//                                     choice.forEach(ans => {
-//                                         var is_correct = ans['Correct_Choice'];
-//                                         if (is_correct === true) {
-//                                             bot.sendMessage(msg.chat.id, `Question : ${removeTags(element['Question_Text'])}\n\nAnswer : ${ans['ChoiceText']}\n\nQuiz Cheat By Anonymous (:`);
-//                                         }
-//                                     });
-//                                 });
-//                             })
-//                         })
-//                     })
-//                 })
-//             })
-//         }
-//     })
-//     } else {
-//         bot.sendMessage(msg.chat.id, "Username Or Password Dosen't Match!")
-//     }
-// })
-// })
+   
