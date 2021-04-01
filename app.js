@@ -213,10 +213,10 @@ bot.on('message', function onMessage(msg) {
                     }
                 })
             } else {
-                bot.sendMessage(msg.chat.id, "Not Valid Link 😅...")
+                bot.sendMessage(msg.chat.id, "Not Valid Link 😅...1")
             }
         } else {
-            bot.sendMessage(msg.chat.id, "Not Valid Link 😅...")
+            bot.sendMessage(msg.chat.id, "Not Valid Link 😅...2")
         }
 
 
