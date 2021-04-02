@@ -23,6 +23,7 @@ fs.readFile('index.html', 'utf8', function(err, html) {
                 //         console.log(is)
                 //     })
                 console.log(oses.remover(link))
+
             }
         });
     })
