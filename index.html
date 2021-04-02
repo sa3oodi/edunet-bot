@@ -1,0 +1,610 @@
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        if ('' != "") {
+            $("#dialogAlert").show();
+        } else {
+            $("#dialogAlert").hide();
+        }
+    });
+</script>
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>البوابة التعليمية</title>
+
+    <link href="/byrushan/vendors/bower_components/material-design-iconic-font/dist/css/a?v=c9p3CTBzu4838t-w6JbfezXbSCVfoDFhXxe2uEClXYo1" rel="stylesheet" />
+
+    <link href="/byrushan/vendors/bower_components/font-awesome/a?v=zT1QaleCofSlb180SzmloGlwcOlIaRjXQxRIYak1rrU1" rel="stylesheet" />
+
+    <link href="/bundle/styles/byrushan/bowercomponents?v=vmqLGOjRbAhkFZmEnGSLSOlLgCtT2v9x6PTKazouWDA1" rel="stylesheet" />
+
+    <link href="/byrushan/css/rtl?v=Sm1c_UQ3oz1fb3LCU1WMedxraPgpbz-E6CFFScx_RwM1" rel="stylesheet" />
+
+    <link href="/Styles/Custom/custom-rtl.css" rel="stylesheet" />
+
+
+
+
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128429116-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-128429116-1');
+    </script>
+
+
+</head>
+
+<body>
+
+
+    <header id="header" class="clearfix" data-ma-theme="bluegray">
+        <ul class="h-inner">
+            <li class="hi-trigger ma-trigger" data-ma-action="sidebar-open" data-ma-target="#sidebar">
+                <div class="line-wrap">
+                    <div class="line top"></div>
+                    <div class="line center"></div>
+                    <div class="line bottom"></div>
+                </div>
+            </li>
+            <li class="pull-right">
+                <ul class="hi-menu">
+
+
+                    <li class="dropdown">
+
+                        <a data-toggle="dropdown" href="">
+                            <i class="him-icon zmdi zmdi-notifications" onclick="LoadNotification()"></i>
+                            <i class="him-counts" id="NotifiLed"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-lg pull-right">
+                            <div class="list-group him-notification">
+                                <div class="lg-header" id="RemoveNotifications">
+                                    التنبيهات
+
+
+                                </div>
+                                <div class="lg-body" id="NotifiDiv">
+
+                                    <a id="LoadIcon" style="padding:10px 15px;">
+
+                                    </a>
+
+                                </div>
+
+
+
+                                <a class="view-more" href="/Message/Notifications">عرض جميع التنبيهات</a>
+                            </div>
+                        </div>
+                    </li>
+
+
+
+
+
+                    <li>
+
+
+                        <a href="/Account/LogOff" style="padding: 8px; font-size:13px; font-family:DroidKufi;">تسجيل الخروج</a>
+                    </li>
+
+                    <li>
+                        <a href="#" id="en-us" class="languageSwitch" style="padding:8px; font-family:sans-serif!important;font-size:14px;">English</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+
+    <section id="main">
+        <aside id="sidebar" class="sidebar c-overflow" style="height:calc(100% - 0px);top:0px;z-index:11;box-shadow:unset">
+
+
+            <div class="s-profile">
+                <div class="pmo-pic text-center">
+                    <img src="/Images/edunet-logo.jpg" width:auto="" style="width:auto;border-radius:0px;border:0px;">
+                </div>
+                <a href="" data-ma-action="profile-menu-toggle" style="background-image:none;margin-bottom:0px;height:auto">
+                    <div class="sp-pic clearfix p-0" style="background-color:#bbbbbb;">
+                        <div class="col-md-9 col-sm-12 col-xs-12 f-13 c-white text-center" style="font-family:DroidKufi;">
+                            <h2 class="f-14 c-white m-t-15">سيدسعيد محمد سعيد محمد</h2>
+
+
+                            <label for="">- طالب  -</label>
+                        </div>
+                        <div class="col-md-3 hidden-sm hidden-xs p-5">
+                            <img class="img-responsive" src="/Profile/UserPhoto" alt="" style="height:60px;width:60px;border-radius:50%;border:2px #ffffff solid">
+                        </div>
+                    </div>
+
+                </a>
+
+                <ul class="main-menu">
+                    <li>
+                        <a href="/Profile/Profile" style="font-family:DroidKufi"><i class="zmdi zmdi-account"></i> معلومات الملف الشخصي</a>
+                    </li>
+                    <li>
+                        <a href="/Manage/ChangePassword" style="font-family:DroidKufi"><i class="zmdi zmdi-lock-outline"></i> تغيير كلمة المرور </a>
+                    </li>
+                    <li>
+                        <a href="/Profile/EditInfo" style="font-family:DroidKufi"><i class="zmdi zmdi-phone"></i>تغيير معلومات الاتصال</a>
+                    </li>
+
+                    <li>
+                        <a href="/Account/LogOff" style="font-family:DroidKufi"><i class="zmdi zmdi-time-restore"></i>تسجيل الخروج</a>
+                    </li>
+
+                </ul>
+            </div>
+
+
+
+            <div class="c-overflow clearfix" style="margin-top:0px;height:calc(100% - 300px);overflow-y:scroll">
+                <ul class="main-menu" style="margin-top:0px">
+                    <li id="Home" class="">
+                        <a href="/Home/Dashboard" class="c-bluegray f-15" style="padding: 14px 25px 14px 20px;"><img src="/Images/MenuIcons/house.png" class="NotAct"><img src="/Images/MenuIcons/b-house.png" class="Act">الصفحة الرئيسية</a>
+                    </li>
+                    <li id="ClassTimeTable" class="">
+                        <a href="/ClassTimeTable/ClassTimeTable" class="c-bluegray f-15" style="padding: 14px 25px 14px 20px;"><img src="/Images/MenuIcons/timetable.png" class="NotAct"><img src="/Images/MenuIcons/b-timetable.png" class="Act">الجدول الدراسي</a>
+                    </li>
+                    <li id="ExamTimeTable" class="">
+                        <a href="/ExamTimeTable/ExamTimeTable" class="c-bluegray f-15" style="padding: 14px 25px 14px 20px;"><img src="/Images/MenuIcons/examtimetable.png" class="NotAct"><img src="/Images/MenuIcons/b-examtimetable.png" class="Act">جدول الامتحانات</a>
+                    </li>
+
+                    <li id="Grades" class="">
+                        <a href="/Grades/Grades" class="c-bluegray f-15" style="padding: 14px 25px 14px 20px;"><img src="/Images/MenuIcons/exam.png" class="NotAct"><img src="/Images/MenuIcons/b-exam.png" class="Act">الدرجات</a>
+                    </li>
+
+                    <li id="Attendance" class="">
+                        <a href="/Attendance/Attendance" class="c-bluegray f-15" style="padding: 14px 25px 14px 20px;"><img src="/Images/MenuIcons/attendance.png" class="NotAct"><img src="/Images/MenuIcons/b-attendance.png" class="Act">الحضور</a>
+                    </li>
+
+                    <li id="Courses" class="">
+                        <a href="/Courses/CoursesListST" class="c-bluegray f-15" style="padding: 14px 25px 14px 20px;"><img src="/Images/MenuIcons/book.png" class="NotAct"><img src="/Images/MenuIcons/b-book.png" class="Act">المواد الدراسية</a>
+                    </li>
+
+                    <li class="sub-menu active toggled">
+                        <a href="" data-ma-action="submenu-toggle" class="c-bluegray f-15" style="padding: 14px 25px 14px 20px;"><img src="/Images/MenuIcons/folder.png" class="NotAct" /><img src="/Images/MenuIcons/b-folder.png" class="Act" />ملخص الأعمال</a>
+
+                        <ul>
+                            <li id="Lessons">
+                                <a href="/ELearning/StudentLessons" class="">الدروس</a>
+                            </li>
+                            <li id="Assignment">
+                                <a class="" href="/Assignment/StudentAssignments">الأنشطة والتطبيقات</a>
+                            </li>
+                            <li id="Resources">
+                                <a href="/Resource/StudentResources" class="">الإثراءات</a>
+                            </li>
+                            <li id="Discussions">
+                                <a href="/ChatRoom/StudentDiscussions" class="">حلقات النقاش</a>
+                            </li>
+                            <li id="Quizzes">
+                                <a href="/Quiz/StudentQuizzes" class="active">الاختبارات القصيرة</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+                    <li id="Messages" class="">
+                        <a href="/Message/Messages" class="c-bluegray  f-15" style="padding: 14px 25px 14px 20px;"><img src="/Images/MenuIcons/letter.png" class="NotAct"><img src="/Images/MenuIcons/b-letter.png" class="Act" />الرسائل</a>
+                    </li>
+
+                    <li id="Econtent" class="">
+                        <a href="/Econtent/EcontentAdvanced" class="c-bluegray f-15" style="padding: 14px 25px 14px 20px;"><img src="/Images/MenuIcons/content.png" class="NotAct"><img src="/Images/MenuIcons/b-content.png" class="Act" />المحتوى التعليمي الرقمي</a>
+                    </li>
+                    <li id="Resources" class="">
+                        <a href="/Econtent/ViewEduResourcesList" class="c-bluegray f-15" style="padding: 14px 25px 14px 20px;"><img src="/Images/MenuIcons/resources.png" class="NotAct"><img src="/Images/MenuIcons/b-resources.png" class="Act">الموارد التعليمية</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </aside>
+        <section id="content">
+            <div class="container">
+
+
+                <ul class="loggedInuserInfo">
+                    <li class="pull-right loggedUserInfolbl f-15">
+
+                        [ الفني المطور ] &nbsp;الجابرية الثانوية الصناعية للبنين
+                    </li>
+                </ul>
+
+
+                <style type="text/css">
+                    .alert {
+                        margin-top: 30px!important;
+                    }
+                </style>
+
+
+
+
+
+                <div class="block-header" style="padding:0">
+                    <h2>الاختبارات القصيرة</h2>
+                </div>
+                <div class="card box box-warning">
+                    <div class="card-header customButton bgm-white" style="border-bottom:1px solid #f3f3f3;padding:15px 30px">
+                        <label class="f-700 p-t-5 p-b-5 f-14 m-b-0">
+            عرض جميع الاختبارات للطالب
+        </label>
+                    </div>
+                    <div class="card-body card-padding">
+                        <div class="table-responsive">
+                            <table id="data-table-basic" class="table table-striped">
+                                <thead>
+                                    <tr class="info f-14">
+                                        <th style="font-weight:bold">عنوان الاختبار</th>
+                                        <th style="font-weight:bold">المادة الدراسية</th>
+                                        <th style="display:none"></th>
+                                        <th style="font-weight:bold;text-align:center">وقت البدء</th>
+                                        <th style="font-weight:bold;text-align:center">وقت الانتهاء</th>
+                                        <th style="font-weight:bold;text-align:center">حالة الاختبار</th>
+                                        <th style="font-weight:bold;text-align:center">الخيارات</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="f-14">
+                                        <td>الحد النوني من متتابعة حسابية </td>
+                                        <td>ريض809</td>
+                                        <td style="display:none">2021/02/17 00:00:00</td>
+                                        <td style="text-align:center">2021/02/17 ، 00:00 ص</td>
+                                        <td style="text-align:center">2021/03/31 ، 00:00 ص</td>
+                                        <td style="text-align:center">
+                                            <label class="c-green">تم تقديم الاختبار</label>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <a href='/Quiz/GetStudentResult?q=7lzuGe0gwXuG/NjzXOu5oQI0F1B9xGMbgOb23vdDAkY='>نتيجة الاختبار</a> </td>
+                                    </tr>
+                                    <tr class="f-14">
+                                        <td>العلاقة بين التغير في الطاقة والشغل المبذول1</td>
+                                        <td>ميك806</td>
+                                        <td style="display:none">2021/02/21 10:00:00</td>
+                                        <td style="text-align:center">2021/02/21 ، 10:00 ص</td>
+                                        <td style="text-align:center">2021/03/10 ، 12:00 م</td>
+                                        <td style="text-align:center">
+                                            <label class="c-green">تم تقديم الاختبار</label>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <a href='/Quiz/GetStudentResult?q=iZILA9pnMnEyfkypEw0GLzhvZB8N0HWphmX5zcsSbe4='>نتيجة الاختبار</a> </td>
+                                    </tr>
+                                    <tr class="f-14">
+                                        <td>المضخات</td>
+                                        <td>ميك806</td>
+                                        <td style="display:none">2021/03/07 15:00:00</td>
+                                        <td style="text-align:center">2021/03/07 ، 15:00 م</td>
+                                        <td style="text-align:center">2021/03/31 ، 00:00 ص</td>
+                                        <td style="text-align:center">
+                                            <label class="c-green">تم تقديم الاختبار</label>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <a href='/Quiz/GetStudentResult?q=0hMSzobyUzsSiJRQLbdScMZejI9arunWu+pOHsRcoLg='>نتيجة الاختبار</a> </td>
+                                    </tr>
+                                    <tr class="f-14">
+                                        <td>مجموع n حدا من المتتابعة الهندسية&#160;</td>
+                                        <td>ريض809</td>
+                                        <td style="display:none">2021/03/08 00:00:00</td>
+                                        <td style="text-align:center">2021/03/08 ، 00:00 ص</td>
+                                        <td style="text-align:center">2021/03/31 ، 00:00 ص</td>
+                                        <td style="text-align:center">
+                                            <label class="c-green">تم تقديم الاختبار</label>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <a href='/Quiz/GetStudentResult?q=g4ocIXlZ6yuigD8Aq2HKztpR/VB3HgBIJm5BAWi8Msw='>نتيجة الاختبار</a> </td>
+                                    </tr>
+                                    <tr class="f-14">
+                                        <td>WEEK 5 - READING COMPREHENSION EXERCISE</td>
+                                        <td>انج820</td>
+                                        <td style="display:none">2021/03/09 10:00:00</td>
+                                        <td style="text-align:center">2021/03/09 ، 10:00 ص</td>
+                                        <td style="text-align:center">2021/03/16 ، 00:00 ص</td>
+                                        <td style="text-align:center">
+                                            <label class="c-green">تم تقديم الاختبار</label>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <a href='/Quiz/GetStudentResult?q=0BAH94DJGPYLMIZajpn5HMUpfPHAA45sTCytyTLU+q0='>نتيجة الاختبار</a> </td>
+                                    </tr>
+                                    <tr class="f-14">
+                                        <td>lesson 5 star delta starter </td>
+                                        <td>رسم806</td>
+                                        <td style="display:none">2021/03/10 00:00:00</td>
+                                        <td style="text-align:center">2021/03/10 ، 00:00 ص</td>
+                                        <td style="text-align:center">2021/03/17 ، 00:00 ص</td>
+                                        <td style="text-align:center">
+                                            <label class="c-green">تم تقديم الاختبار</label>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <a href='/Quiz/GetStudentResult?q=Z69ktJH/GabdIXG3DE1HO8eQDPcBHUqy5uV6oAa9MJs='>نتيجة الاختبار</a> </td>
+                                    </tr>
+                                    <tr class="f-14">
+                                        <td>الوحدة الثامنة </td>
+                                        <td>مشر806</td>
+                                        <td style="display:none">2021/03/14 00:00:00</td>
+                                        <td style="text-align:center">2021/03/14 ، 00:00 ص</td>
+                                        <td style="text-align:center">2021/03/18 ، 00:00 ص</td>
+                                        <td style="text-align:center">
+                                            <label class="c-green">تم تقديم الاختبار</label>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <a href='/Quiz/GetStudentResult?q=dc7uYVeHkLFIy+H6zmdcyff1QsVtp2GmT247IG/7les='>نتيجة الاختبار</a> </td>
+                                    </tr>
+                                    <tr class="f-14">
+                                        <td>القوة المحصلة لقوى متوازية</td>
+                                        <td>ميك806</td>
+                                        <td style="display:none">2021/03/14 11:00:00</td>
+                                        <td style="text-align:center">2021/03/14 ، 11:00 ص</td>
+                                        <td style="text-align:center">2021/04/01 ، 00:00 ص</td>
+                                        <td style="text-align:center">
+                                            <label class="c-green">تم تقديم الاختبار</label>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <a href='/Quiz/GetStudentResult?q=2QHueY5vMvGjh90vm3mpyUJDnEaK22EpfKGJCTM0t4U='>نتيجة الاختبار</a> </td>
+                                    </tr>
+                                    <tr class="f-14">
+                                        <td>مراجعة على المتتابعة الهندسية </td>
+                                        <td>ريض809</td>
+                                        <td style="display:none">2021/03/15 00:00:00</td>
+                                        <td style="text-align:center">2021/03/15 ، 00:00 ص</td>
+                                        <td style="text-align:center">2021/03/31 ، 00:00 ص</td>
+                                        <td style="text-align:center">
+                                            <label class="c-green">تم تقديم الاختبار</label>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <a href='/Quiz/GetStudentResult?q=TSwTgbttzMwno2Da48RbOY3oxdEK1g2ZLx7qsH6UGSo='>نتيجة الاختبار</a> </td>
+                                    </tr>
+                                    <tr class="f-14">
+                                        <td>الزوايا و قياس الزاوية </td>
+                                        <td>ريض809</td>
+                                        <td style="display:none">2021/03/26 00:00:00</td>
+                                        <td style="text-align:center">2021/03/26 ، 00:00 ص</td>
+                                        <td style="text-align:center">2021/03/31 ، 00:00 ص</td>
+                                        <td style="text-align:center">
+                                            <label class="c-green">تم تقديم الاختبار</label>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <a href='/Quiz/GetStudentResult?q=r8DHKEQSkp8hEs2VX7RldyhSIrmeoZGgNp+s3bvuBeI='>نتيجة الاختبار</a> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+    </section>
+
+    <footer id="footer">
+        <p> وزارة التربية والتعليم ، مملكة البحرين - &copy; 2021</p>
+    </footer>
+
+    <script src="/bundles/scripts/byrushan/bowercomponents?v=hTrq5zt-xnFaMBqCBLjuHLI3mMs_JkvVRLmKEmIa8Dg1"></script>
+
+    <script src="/bundles/scripts/byrushan/scriptsvendors?v=UzpyPuMgtoKfT1GUd3jpw06_M2dyZiNIrY1o2oNI1bA1"></script>
+
+
+    <script src="/bundles/scripts/byrushan/vendors-rtl?v=lAC2WTTDq19OPBGIJki8RNzopQNymmRKjd0WBR7Hxco1"></script>
+    <script type="text/javascript">
+        //This is for arabic datatable text
+        $(document).ready(function() {
+            $('#data-table-basic').dataTable({
+                "language": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ سجلات",
+                    "sZeroRecords": "لم يعثر على أية سجلات",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ سجل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ سجل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "ابحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+
+                    //"url": "../../byrushan/vendors/bower_components/datatables.net/js/i18n/Arabic.lang"
+                    //"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Arabic.json"
+
+                }
+            });
+        });
+    </script>
+
+
+    <script>
+        $.fn.dataTable.defaults.aaSorting = [
+            [2, 'desc']
+        ];
+    </script>
+
+
+    <script src="/bundles/scripts/byrushan?v=U1WyUyGBBPCyapHu0w3SRgk-E6ThSXZMt37dXW8S6hw1"></script>
+
+    <script src="/bundles/scripts/custom?v=-gQViyBGTiE_EsUWvuXiM32kTkLod3k75iXj7MNpyOE1"></script>
+
+
+    <script type="text/javascript">
+        //$.ajax({
+        //    url: "/Message/CheckUserNotification",
+        //    datatype: "text",
+        //    type: "GET",
+        //    success: function (data) {
+        //        if (data == 'True') {
+        //            $('#NotifiLed').show();
+        //        }
+        //    },
+        //    error: function () {
+        //        //alert('error');
+        //    }
+        //});
+
+        var spinner = "<div class='text-center'><p>&nbsp;<p><i class='fa fa-spinner fa-pulse fa-3x fa-fw'></i><span class='sr-only'>Loading...</span><p>&nbsp;<p></div>";
+        $('#LoadIcon').html(spinner);
+
+        function LoadNotification() {
+
+            var GetNotification = "/Message/UnreadNotifications";
+            $('#NotifiDiv').load(GetNotification, function(response, status, xhr) {
+                if (status == "error") {
+                    var msg = "Sorry but there was an error: ";
+                    $("#NotifiDiv").html(msg + xhr.status + " " + xhr.statusText);
+                } else {}
+            });
+        }
+
+        function ClearNotification() {
+
+            //if (confirm('')) {
+            //    $('#LoadIcon').html(spinner);
+
+            //    var ClearNotification = "/Message/ClearNotifications";
+            //    $('#NotifiDiv').load(ClearNotification, function (response, status, xhr) {
+            //        if (status == "error") {
+            //            var msg = "Sorry but there was an error: ";
+            //            $("#NotifiDiv").html(msg + xhr.status + " " + xhr.statusText);
+            //        }
+            //        else {
+
+            //            LoadNotification();
+            //        }
+            //    });
+            //}
+        }
+        $(document).ready(function() {
+            $('#NotifiLed').hide();
+            $(document).on('click', '.languageSwitch', function(event) {
+                var lang = $(this).attr('id');
+                $.ajax({
+                    url: "/Language/SetCulture",
+                    datatype: "text",
+                    data: {
+                        culture: lang
+                    },
+                    type: "GET",
+                    success: function(data) {
+                        location.reload(true);
+                        document.location.href = String(document.location.href).replace(/#/, "");
+                    },
+                    error: function() {
+                        //alert('error');
+                    }
+                });
+            });
+
+
+        });
+
+
+        //$(function () {
+        //    // Reference the auto-generated proxy for the hub.
+        //    var progress = $.connection.progressHub;
+        //    console.log(progress);
+
+        //    // Create a function that the hub can call back to display messages.
+        //    progress.client.AddProgress = function (message, percentage) {
+        //        alert(percentage);
+        //        alert(message);
+        //        ProgressBarModal("show", message + " " + percentage);
+        //        $('#ProgressMessage').width(percentage);
+        //        if (percentage == "100%") {
+        //            ProgressBarModal();
+        //        }
+        //    };
+
+        //    $.connection.hub.start().done(function () {
+        //        var connectionId = $.connection.hub.id;
+        //        console.log(connectionId);
+        //        alert('done');
+
+        //    });
+
+        //});
+    </script>
+
+
+
+
+
+    <script>
+        //read session timeout value from config
+        var sessionTimeoutWarning = 15 - 1;
+        var sessionTimeout = 15;
+
+        //warning before 60 seconds - Inactive for now
+        var sTimeoutWarning = parseInt(sessionTimeoutWarning) * 60 * 1000;
+        var set1 = setTimeout('SessionEndingWarning()', sTimeoutWarning);
+
+        var sTimeout = parseInt(sessionTimeout) * 60 * 1000;
+        var set2 = setTimeout('SessionEndedWarning()', sTimeout);
+
+        //giving warning message - Inactive for now
+        function SessionEndingWarning() {
+            swal({
+                title: "هل تحتاج إلى المزيد من الوقت ؟",
+                text: "جلستك على وشك الانتهاء ، وسيتم تسجيل خروجك تلقائيًا في غضون {0} ثانية. لمتابعة استخدام البوابة، أختر البقاء متصلا".replace('{0}', (parseInt(sessionTimeout) - parseInt(sessionTimeoutWarning)) * 60),
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonText: "البقاء متصلا",
+                cancelButtonText: "تسجيل الخروج",
+            }).then(function() {
+                clearTimeout(set1);
+                clearTimeout(set2);
+                setTimeout('SessionEndingWarning()', sTimeoutWarning);
+            }, function(dismiss) {
+                if (dismiss === 'cancel') {
+                    window.location = "/Account/LogOff";
+                }
+            }).catch(err => {
+                if (err) {
+                    window.location = "/Account/LogOff";
+                }
+            });
+        }
+
+        //active one
+        //session has ended + warning
+        function SessionEndedWarning() {
+            swal({
+                title: 'انتهت صلاحية الجلسة', //"Session Timeout!",
+                text: 'انتهت صلاحية جلستك، يرجى تسجيل الدخول مرة أخرى بالضغط على زر (موافق) أو تحديث الصفحة', //"You sessions has been expired. Please sign in again by clicking the ok button or refresh the page.",
+                type: "warning",
+                showCancelButton: false,
+                confirmButtonText: 'موافق', //Ok
+            }).then(function() {
+                window.location = "/Account/LogOff";
+            });
+        }
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>
