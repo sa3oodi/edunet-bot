@@ -245,7 +245,7 @@ bot.on('message', function onMessage(msg) {
                                         quiz_links.forEach(link => {
                                             if (link.includes('TakeQuiz?q=')) {
 
-                                                // console.log(hrefs.remover(link))
+
                                                 bot.sendMessage(msg.chat.id, `This Quiz Not Answered Yet...\n\nhttps://www.edunet.bh/Quiz/${hrefs.remover(link)}`)
 
                                             }
