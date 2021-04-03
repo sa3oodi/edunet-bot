@@ -135,7 +135,7 @@ bot.on('message', function onMessage(msg) {
     if (msg.text.toLocaleLowerCase() === '/start') {
         bot.sendMessage(msg.chat.id, `Welcome Back ${msg.from.username} 😝,\n\nThis Bot Allows You To Get\nEdunet.bh Quiz Answers For Free 😎.\n\nFor More Helps Send (/help)`)
     } else if (msg.text.toLocaleLowerCase() === '/help') {
-        bot.sendMessage(msg.chat.id, 'Edunet Quiz Commands.\n\nFor login To Edunet.bh;\nSend (/login username:password)\n\nMake sure Enter the Command Correctly!\n\n\nFor Get The Quiz Answers\nPlease Send The Quiz Link To The Bot,\nif You Are Already Logged In Before!')
+        bot.sendMessage(msg.chat.id, 'Edunet Quiz Commands.\n\nFor login To Edunet.bh;\nSend (/login username:password)\n\nMake sure Enter the Command Correctly!\n\n\nFor Get The Quiz Answers\nPlease Send The Quiz Link To The Bot,\nif You Are Already Logged In Before!\n\n(/quiz) command\nThis Command Allows You\nTo Find Any Quiz Not Answered, And The Bot Will Send The Link.')
     } else if (msg.text.includes('/login')) {
         var username2 = msg.text.split(':')[0]
         var username = username2.split('/login ')[1]
