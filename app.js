@@ -14,8 +14,8 @@ const options = {
 };
 
 const url = 'https://powerful-refuge-93617.herokuapp.com:443';
-const bot = new TelegramBot(TOKEN, { polling: true });
-// bot.setWebHook(`${url}/bot${TOKEN}`);
+const bot = new TelegramBot(TOKEN, options);
+bot.setWebHook(`${url}/bot${TOKEN}`);
 
 async function regex_hidden_token(response) {
     const is = /value="(.*?)" \/>/gm
@@ -131,9 +131,7 @@ async function edunet_login(username, password) {
         })
     })
 }
-
 bot.on('message', function onMessage(msg) {
-
     if (msg.text.toLocaleLowerCase() === '/start') {
         bot.sendMessage(msg.chat.id, `Welcome Back ${msg.from.username} 😝,\n\nThis Bot Allows You To Get\nEdunet.bh Quiz Answers For Free 😎.\n\nFor More Helps Send (/help)`)
     } else if (msg.text.toLocaleLowerCase() === '/help') {
@@ -142,8 +140,6 @@ bot.on('message', function onMessage(msg) {
         var username2 = msg.text.split(':')[0]
         var username = username2.split('/login ')[1]
         var password = msg.text.split(':')[1]
-
-
         database.check_user(username).then(check_user_response => {
             console.log(`${JSON.stringify(check_user_response)}\n\n`)
             if (check_user_response.success === true) {
@@ -155,7 +151,6 @@ bot.on('message', function onMessage(msg) {
                             console.log(response['response'])
                             var headers = `AWSALB=${response['headers']['AWSALB'].value}; AWSALBCORS=${response['headers']['AWSALBCORS'].value}; .AspNet.ApplicationCookie=${response['headers']['.AspNet.ApplicationCookie'].value}; __RequestVerificationToken=esQwShPDE3KGqgrHG0RIObbTGGTwBoL49P6vfhbZ-oGF8Xg5gnS62L3O2oW5KiUXSyOKewvBlqK1kAPVibReTGMKCTfoFp_XW08OP9vwD4w1; ASP.NET_SessionId=btbp1ifxs0imrr3u4gcf32yh; zoom=1.7999999999999998`
                             set_session(headers).then(set_session_response => {
-
                                 database.add_user(username, password, msg.chat.id).then(add_user_reponse => {
                                     console.log(`${add_user_reponse}\n\n`)
                                     if (add_user_reponse.success === true) {
@@ -164,7 +159,6 @@ bot.on('message', function onMessage(msg) {
                                         bot.sendMessage(msg.chat.id, add_user_reponse.message)
                                     }
                                 })
-
                             })
                         } else {
                             bot.sendMessage(msg.chat.id, "Username Or Password Dosen't Match!")
@@ -174,7 +168,6 @@ bot.on('message', function onMessage(msg) {
             }
         })
     } else {
-
         if (msg.text.includes('https://edunet.bh/Quiz/TakeQuiz?q=')) {
             if (validUrl.isUri(msg.text)) {
                 database.get_info(msg.chat.id).then(get_info_response => {
@@ -182,10 +175,7 @@ bot.on('message', function onMessage(msg) {
                     if (get_info_response.username === null) {
                         bot.sendMessage(msg.chat.id, "You have Not logged in yet,\nplease sign in...\n\nFor More Helps(/help)")
                     } else {
-
-
                         edunet_login(get_info_response.username, get_info_response.password).then(response => {
-                            // console.log(response['response'])
                             if (response['response'].includes('/Account/UserType')) {
                                 var headers_login = `AWSALB=${response['headers']['AWSALB'].value}; AWSALBCORS=${response['headers']['AWSALBCORS'].value}; .AspNet.ApplicationCookie=${response['headers']['.AspNet.ApplicationCookie'].value}; __RequestVerificationToken=esQwShPDE3KGqgrHG0RIObbTGGTwBoL49P6vfhbZ-oGF8Xg5gnS62L3O2oW5KiUXSyOKewvBlqK1kAPVibReTGMKCTfoFp_XW08OP9vwD4w1; ASP.NET_SessionId=btbp1ifxs0imrr3u4gcf32yh; zoom=1.7999999999999998`
                                 set_session(headers_login).then(set_session_response => {
@@ -194,9 +184,7 @@ bot.on('message', function onMessage(msg) {
                                             get_id_of_cource(qu).then(cource_id => {
                                                 edunet_quiz(quize_id, cource_id).then(respon => {
                                                     respon.forEach(element => {
-                                                        // bot.sendMessage(msg.chat.id, `Question : ${removeTags(element['Question_Text'])}\n\nAnswer : ${ans['ChoiceText']}\n\nQuiz Cheat By Anonymous (:`);
                                                         var qtype = element['QuestionTypeID']
-
                                                         var qtype = element['QuestionTypeID']
                                                         if (qtype === 3) {
                                                             var choice = element['ChoicesList']
@@ -204,14 +192,11 @@ bot.on('message', function onMessage(msg) {
                                                                 var is_correct = ans['Correct_Choice']
                                                                 if (is_correct === true) {
                                                                     bot.sendMessage(msg.chat.id, `Question : ${removeTags(element['Question_Text'])}\n\nAnswer : ${ans['ChoiceText']}\n\nQuiz Cheat By Anonymous (:`);
-
                                                                 }
                                                             });
                                                         } else if (qtype === 1) {
                                                             bot.sendMessage(msg.chat.id, `Question : ${removeTags(element['Question_Text'])}\n\nAnswer : ${removeTags(element['EssayAnswer'])}\n\nQuiz Cheat By Anonymous (:`);
                                                         }
-
-
                                                     });
                                                 })
                                             })
@@ -236,7 +221,6 @@ bot.on('message', function onMessage(msg) {
                     bot.sendMessage(msg.chat.id, "You have Not logged in yet,\nplease sign in...\n\nFor More Helps(/help)")
                 } else {
                     edunet_login(get_info_response.username, get_info_response.password).then(response => {
-                        // console.log(response['response'])
                         if (response['response'].includes('/Account/UserType')) {
                             var headers_login = `AWSALB=${response['headers']['AWSALB'].value}; AWSALBCORS=${response['headers']['AWSALBCORS'].value}; .AspNet.ApplicationCookie=${response['headers']['.AspNet.ApplicationCookie'].value}; __RequestVerificationToken=esQwShPDE3KGqgrHG0RIObbTGGTwBoL49P6vfhbZ-oGF8Xg5gnS62L3O2oW5KiUXSyOKewvBlqK1kAPVibReTGMKCTfoFp_XW08OP9vwD4w1; ASP.NET_SessionId=btbp1ifxs0imrr3u4gcf32yh; zoom=1.7999999999999998`
                             set_session(headers_login).then(set_session_response => {
@@ -244,10 +228,7 @@ bot.on('message', function onMessage(msg) {
                                     hrefs.get(quiz_page_src).then(quiz_links => {
                                         quiz_links.forEach(link => {
                                             if (link.includes('TakeQuiz?q=')) {
-
-
                                                 bot.sendMessage(msg.chat.id, `This Quiz Not Answered Yet...\n\nhttps://www.edunet.bh/Quiz/${hrefs.remover(link)}`)
-
                                             }
                                         });
                                     })
@@ -260,11 +241,5 @@ bot.on('message', function onMessage(msg) {
         } else {
             bot.sendMessage(msg.chat.id, "Not Valid Link 😅...1")
         }
-
-
-
-
-
-
     }
 })
