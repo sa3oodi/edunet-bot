@@ -228,7 +228,7 @@ bot.on('message', function onMessage(msg) {
                                     hrefs.get(quiz_page_src).then(quiz_links => {
                                         quiz_links.forEach(link => {
                                             if (link.includes('TakeQuiz?q=')) {
-                                                bot.sendMessage(msg.chat.id, `This Quiz Not Answered Yet...\n\nhttps://www.edunet.bh/Quiz/${hrefs.remover(link)}`)
+                                                bot.sendMessage(msg.chat.id, `This Quiz Not Answered Yet...\n\nhttps://www.edunet.bh${hrefs.remover(link)}`)
                                             }
                                         });
                                     })
