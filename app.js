@@ -168,7 +168,7 @@ bot.on('message', function onMessage(msg) {
             }
         })
     } else {
-        if (msg.text.includes('https://edunet.bh/Quiz/TakeQuiz?q=')) {
+        if (msg.text.includes('https://edunet.bh/Quiz/TakeQuiz?q=' || 'https://www.edunet.bh/Quiz/TakeQuiz?q=')) {
             if (validUrl.isUri(msg.text)) {
                 database.get_info(msg.chat.id).then(get_info_response => {
                     console.log(get_info_response)
