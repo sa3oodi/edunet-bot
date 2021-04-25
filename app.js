@@ -196,6 +196,14 @@ bot.on('message', function onMessage(msg) {
                                                             });
                                                         } else if (qtype === 1) {
                                                             bot.sendMessage(msg.chat.id, `Question : ${removeTags(element['Question_Text'])}\n\nAnswer : ${removeTags(element['EssayAnswer'])}\n\nQuiz Cheat By Anonymous (:`);
+                                                        }else{
+                                                            var choice = element['ChoicesList']
+                                                            choice.forEach(ans => {
+                                                                var is_correct = ans['Correct_Choice']
+                                                                if (is_correct === true) {
+                                                                    bot.sendMessage(msg.chat.id, `Question : ${removeTags(element['Question_Text'])}\n\nAnswer : ${ans['ChoiceText']}\n\nQuiz Cheat By Anonymous (:`);
+                                                                }
+                                                            });
                                                         }
                                                     });
                                                 })
